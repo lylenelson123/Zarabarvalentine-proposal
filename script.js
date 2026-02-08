@@ -1,80 +1,75 @@
-// Get button elements
 const nextBtn = document.getElementById('next-btn');
 const prevBtn = document.getElementById('prev-btn');
 const yesBtn = document.getElementById('yes-btn');
 const noBtn = document.getElementById('no-btn');
+const question = document.getElementById('question');
+const successMessage = document.getElementById('success-message');
 
-// Carousel items
 const carouselItems = document.querySelectorAll('.carousel-item');
+const imageCaptions = ['Our car selfie vibes 🚗', 'Our cozy moments together 🏠', 'Our mountain adventure 🏔️'];
 let currentIndex = 0;
 
-// Function to show a specific item
 function showItem(index) {
     carouselItems.forEach((item, i) => {
         item.style.display = (i === index) ? 'block' : 'none';
     });
+    document.getElementById('image-caption').textContent = imageCaptions[index];
 }
 
-// Show the first item initially
 showItem(currentIndex);
 
-// Next button click handler
 nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % carouselItems.length;
     showItem(currentIndex);
     createFallingHearts();
 });
 
-// Previous button click handler
 prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
     showItem(currentIndex);
     createFallingHearts();
 });
 
-// Yes button click handler
 yesBtn.addEventListener('click', () => {
-    alert('You clicked Yes!');
+    question.innerHTML = '<span class="zara-name">Zara</span>, I knew you\'d say yes! 💕';
+    successMessage.classList.remove('hidden');
+    noBtn.style.display = 'none';
+    yesBtn.textContent = 'I love you! 💝';
+    yesBtn.style.pointerEvents = 'none';
+    
+    for (let i = 0; i < 20; i++) {
+        setTimeout(createFallingHearts, i * 100);
+    }
 });
 
-// No button click handler
-noBtn.addEventListener('click', () => {
-    alert('You clicked No!');
+noBtn.addEventListener('mouseover', () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    
+    noBtn.style.position = 'fixed';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
 });
 
-// Function to create falling hearts animation
 function createFallingHearts() {
+    const heartsContainer = document.getElementById('falling-hearts');
+    if (!heartsContainer) return;
+    
     const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.position = 'absolute';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.animation = 'fall 2s ease-in';
-    document.body.appendChild(heart);
-
-    // Remove heart after animation
-    heart.addEventListener('animationend', () => {
+    heart.classList.add('falling-heart');
+    heart.textContent = ['❤️', '💕', '💖', '💗', '💝', '💘'][Math.floor(Math.random() * 6)];
+    
+    const left = Math.random() * window.innerWidth;
+    const duration = 5 + Math.random() * 5;
+    
+    heart.style.left = left + 'px';
+    heart.style.animationDuration = duration + 's';
+    
+    heartsContainer.appendChild(heart);
+    
+    setTimeout(() => {
         heart.remove();
-    });
+    }, duration * 1000);
 }
 
-// CSS for hearts animation
-const style = document.createElement('style');
-style.textContent = `
-    .heart {
-        width: 20px;
-        height: 20px;
-        background: red;
-        position: absolute;
-        top: 0;
-        opacity: 0.8;
-        border-radius: 50%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    @keyframes fall {
-        to {
-            transform: translateY(100vh);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
+setInterval(createFallingHearts, 500);
