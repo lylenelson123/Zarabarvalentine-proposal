@@ -10,16 +10,16 @@ let yesSize = 1.2;
 // Photo gallery data with captions
 const photos = [
     {
-        url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop',
-        caption: 'Our beautiful mountain adventure 🏔️💕'
+        url: 'images/image1.svg',
+        caption: 'Our mountain adventure 🏔️'
     },
     {
-        url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=500&h=500&fit=crop',
-        caption: 'Cozy moments together 🏠💝'
+        url: 'images/image2.svg',
+        caption: 'Our cozy moments together 🏠'
     },
     {
-        url: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&h=500&fit=crop',
-        caption: 'Our fun car selfies 🚗💖'
+        url: 'images/image3.svg',
+        caption: 'Our car selfie vibes 🚗'
     }
 ];
 

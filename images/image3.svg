@@ -1,0 +1,53 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Car selfie scene -->
+  <defs>
+    <linearGradient id="carGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8E8E;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background (through windshield) -->
+  <rect width="800" height="600" fill="#87CEEB"/>
+  
+  <!-- Road/landscape through windshield -->
+  <rect y="400" width="800" height="200" fill="#90EE90"/>
+  <rect y="500" width="800" height="100" fill="#696969"/>
+  
+  <!-- Car dashboard -->
+  <rect y="500" width="800" height="100" fill="#2C2C2C"/>
+  <circle cx="200" cy="550" r="30" fill="#1C1C1C" stroke="#888" stroke-width="3"/>
+  <circle cx="600" cy="550" r="30" fill="#1C1C1C" stroke="#888" stroke-width="3"/>
+  
+  <!-- Windshield frame -->
+  <rect width="800" height="20" fill="#2C2C2C"/>
+  <rect y="580" width="800" height="20" fill="#2C2C2C"/>
+  <rect width="20" height="600" fill="#2C2C2C"/>
+  <rect x="780" width="20" height="600" fill="#2C2C2C"/>
+  
+  <!-- Rearview mirror -->
+  <rect x="350" y="30" width="100" height="15" fill="#1C1C1C"/>
+  <rect x="370" y="45" width="60" height="40" rx="5" fill="#4A4A4A" stroke="#1C1C1C" stroke-width="2"/>
+  
+  <!-- Decorative hearts around the scene -->
+  <text x="100" y="100" font-size="50" fill="#FF1493">💖</text>
+  <text x="650" y="120" font-size="50" fill="#FF69B4">💕</text>
+  <text x="120" y="450" font-size="45" fill="#FF1493">💝</text>
+  <text x="630" y="470" font-size="45" fill="#FF69B4">💗</text>
+  <text x="380" y="200" font-size="40" fill="#FF1493">💘</text>
+  
+  <!-- Selfie indication -->
+  <circle cx="300" cy="280" r="60" fill="#FDB" stroke="#333" stroke-width="3"/>
+  <circle cx="285" cy="270" r="8" fill="#333"/>
+  <circle cx="315" cy="270" r="8" fill="#333"/>
+  <path d="M 280 300 Q 300 310 320 300" stroke="#333" stroke-width="3" fill="none"/>
+  
+  <circle cx="500" cy="280" r="60" fill="#FDB" stroke="#333" stroke-width="3"/>
+  <circle cx="485" cy="270" r="8" fill="#333"/>
+  <circle cx="515" cy="270" r="8" fill="#333"/>
+  <path d="M 480 300 Q 500 310 520 300" stroke="#333" stroke-width="3" fill="none"/>
+  
+  <!-- Text overlay -->
+  <rect y="520" width="800" height="80" fill="rgba(0,0,0,0.5)"/>
+  <text x="400" y="565" font-family="Arial, sans-serif" font-size="32" fill="white" text-anchor="middle">Car Selfie Vibes 🚗</text>
+</svg>
