@@ -18,10 +18,28 @@ body {
 }
 
 body.celebration-mode {
-    background: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600') center/cover no-repeat, linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    /* Basketball court inspired gradient background */
+    background: 
+        radial-gradient(ellipse at 50% 20%, rgba(255, 105, 180, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(255, 20, 147, 0.3) 0%, transparent 50%),
+        linear-gradient(180deg, 
+            #1a1a2e 0%, 
+            #16213e 20%, 
+            #0f3460 40%, 
+            #1a1a2e 60%,
+            #16213e 80%,
+            #1a1a2e 100%
+        );
+    animation: cameraShake 0.5s ease-in-out 0s 3;
+}
+
+/* Alternative: If basketball arena image is available locally, uncomment and update path:
+body.celebration-mode {
+    background: url('images/basketball-arena.jpg') center/cover no-repeat, linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     background-blend-mode: overlay;
     animation: cameraShake 0.5s ease-in-out 0s 3;
 }
+*/
 
 /* Falling hearts animation */
 #falling-hearts {
