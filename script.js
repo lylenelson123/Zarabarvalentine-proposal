@@ -1,10 +1,16 @@
-// photo gallery initialization
-const images = ['206BF27B-2711-445C-AFD3-E2741D2A99EE.png', 'IMG_6139.jpeg', 'dji_mimo_20250916_164820_20250916164820_1758140453410_photo.jpeg'];
+// Photo Carousel Functionality
+
+const images = [
+    'images/206BF27B-2711-445C-AFD3-E2741D2A99EE.png',
+    'images/IMG_6139.jpeg',
+    'images/dji_mimo_20250916_164820_20250916164820_1758140453410_photo.jpeg',
+];
+
 let currentIndex = 0;
 
 function showImage(index) {
-    const imageContainer = document.getElementById('carousel-image');
-    imageContainer.src = images[index];
+    const imageElement = document.getElementById('carousel');
+    imageElement.src = images[index];
 }
 
 function nextImage() {
@@ -12,33 +18,26 @@ function nextImage() {
     showImage(currentIndex);
 }
 
-function previousImage() {
+function prevImage() {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
     showImage(currentIndex);
 }
 
-// Auto-advance the carousel every 4 seconds
-setInterval(nextImage, 4000);
-
-// Button click handlers
-document.getElementById('next-button').addEventListener('click', nextImage);
-document.getElementById('previous-button').addEventListener('click', previousImage);
-
-// Falling hearts animation
-function createFallingHearts() {
-    // Heart creation and falling animation logic
+function initCarousel() {
+    showImage(currentIndex);
+    document.getElementById('prevButton').addEventListener('click', prevImage);
+    document.getElementById('nextButton').addEventListener('click', nextImage);
 }
 
-// No button hover effect
-const noButton = document.getElementById('no-button');
-noButton.style.pointerEvents = 'none';
+window.onload = initCarousel;
 
-// Yes button click handler with heart particles
-const yesButton = document.getElementById('yes-button');
-yesButton.addEventListener('click', function() {
-    createFallingHearts();
-    alert("I'm getting u the 14th, be ready :)");
-});
-
-// Initialize the first image
-showImage(currentIndex);
+// Optional: Add CSS animations
+const imageElement = document.getElementById('carousel');
+imageElement.style.transition = 'opacity 0.5s';
+setInterval(() => {
+    imageElement.style.opacity = '0';
+    setTimeout(() => {
+        nextImage();
+        imageElement.style.opacity = '1';
+    }, 500);
+}, 5000);
