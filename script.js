@@ -1,43 +1,54 @@
-// Photo Carousel Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Photo carousel
+    const images = [
+        'images/206BF27B-2711-445C-AFD3-E2741D2A99EE.png',
+        'images/IMG_6139.jpeg',
+        'images/dji_mimo_20250916_164820_20250916164820_1758140453410_photo.jpeg'
+    ];
+    let currentIndex = 0;
 
-const images = [
-    'images/206BF27B-2711-445C-AFD3-E2741D2A99EE.png',
-    'images/IMG_6139.jpeg',
-    'images/dji_mimo_20250916_164820_20250916164820_1758140453410_photo.jpeg',
-];
+    const imageElement = document.querySelector('#carousel-image');
+    const nextButton = document.querySelector('#next-button');
+    const prevButton = document.querySelector('#prev-button');
 
-let currentIndex = 0;
+    function updateImage() {
+        imageElement.src = images[currentIndex];
+    }
 
-function showImage(index) {
-    const imageElement = document.getElementById('carousel');
-    imageElement.src = images[index];
-}
+    nextButton.addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+    });
 
-function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage(currentIndex);
-}
+    prevButton.addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+    });
 
-function prevImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage(currentIndex);
-}
+    updateImage();
 
-function initCarousel() {
-    showImage(currentIndex);
-    document.getElementById('prevButton').addEventListener('click', prevImage);
-    document.getElementById('nextButton').addEventListener('click', nextImage);
-}
+    // Falling hearts animation
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => {
+            document.body.removeChild(heart);
+        }, 3000); // Remove the heart after 3 seconds
+    }
 
-window.onload = initCarousel;
+    setInterval(createHeart, 500); // Create a heart every half second
 
-// Optional: Add CSS animations
-const imageElement = document.getElementById('carousel');
-imageElement.style.transition = 'opacity 0.5s';
-setInterval(() => {
-    imageElement.style.opacity = '0';
-    setTimeout(() => {
-        nextImage();
-        imageElement.style.opacity = '1';
-    }, 500);
-}, 5000);
+    // Yes/No button handlers
+    const yesButton = document.querySelector('#yes-button');
+    const noButton = document.querySelector('#no-button');
+
+    yesButton.addEventListener('click', function() {
+        alert('You clicked YES!');
+    });
+
+    noButton.addEventListener('click', function() {
+        alert('You clicked NO!');
+    });
+});
