@@ -14,7 +14,32 @@ body {
     font-family: 'Dancing Script', cursive;
     overflow-x: hidden;
     position: relative;
+    transition: background 0.5s ease;
 }
+
+body.celebration-mode {
+    /* Basketball court inspired gradient background */
+    background: 
+        radial-gradient(ellipse at 50% 20%, rgba(255, 105, 180, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(255, 20, 147, 0.3) 0%, transparent 50%),
+        linear-gradient(180deg, 
+            #1a1a2e 0%, 
+            #16213e 20%, 
+            #0f3460 40%, 
+            #1a1a2e 60%,
+            #16213e 80%,
+            #1a1a2e 100%
+        );
+    animation: cameraShake 0.5s ease-in-out 0s 3;
+}
+
+/* Alternative: If basketball arena image is available locally, uncomment and update path:
+body.celebration-mode {
+    background: url('images/basketball-arena.jpg') center/cover no-repeat, linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-blend-mode: overlay;
+    animation: cameraShake 0.5s ease-in-out 0s 3;
+}
+*/
 
 /* Falling hearts animation */
 #falling-hearts {
@@ -387,6 +412,20 @@ button:hover {
     }
 }
 
+/* Camera shake animation */
+@keyframes cameraShake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    10% { transform: translate(-5px, -5px) rotate(-1deg); }
+    20% { transform: translate(5px, 5px) rotate(1deg); }
+    30% { transform: translate(-5px, 5px) rotate(-1deg); }
+    40% { transform: translate(5px, -5px) rotate(1deg); }
+    50% { transform: translate(-5px, -5px) rotate(-1deg); }
+    60% { transform: translate(5px, 5px) rotate(1deg); }
+    70% { transform: translate(-5px, 5px) rotate(-1deg); }
+    80% { transform: translate(5px, -5px) rotate(1deg); }
+    90% { transform: translate(-5px, -5px) rotate(-1deg); }
+}
+
 /* Heart particles */
 #heart-particles {
     position: fixed;
@@ -396,6 +435,166 @@ button:hover {
     height: 100%;
     pointer-events: none;
     z-index: 9999;
+}
+
+/* Confetti styles */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff69b4;
+    animation: confettiFall linear forwards;
+    pointer-events: none;
+}
+
+@keyframes confettiFall {
+    0% {
+        top: -10%;
+        opacity: 1;
+    }
+    100% {
+        top: 110%;
+        opacity: 0;
+        transform: rotate(720deg);
+    }
+}
+
+/* Celebration container */
+#celebration-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 60px 80px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.6), 0 0 100px rgba(255, 105, 180, 0.4);
+    animation: celebrationPopIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), pulsingGlow 2s ease-in-out infinite;
+    display: none;
+}
+
+#celebration-container.show {
+    display: block;
+}
+
+@keyframes celebrationPopIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes pulsingGlow {
+    0%, 100% {
+        box-shadow: 0 20px 60px rgba(255, 105, 180, 0.6), 0 0 100px rgba(255, 105, 180, 0.4);
+    }
+    50% {
+        box-shadow: 0 25px 80px rgba(255, 105, 180, 0.9), 0 0 150px rgba(255, 105, 180, 0.7), 0 0 200px rgba(255, 192, 203, 0.5);
+    }
+}
+
+#celebration-container h2 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #e91e63;
+    margin: 0 0 20px 0;
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    animation: scaleUpText 1s ease-out, textGlow 2s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(233, 30, 99, 0.8), 0 0 60px rgba(233, 30, 99, 0.5);
+}
+
+@keyframes scaleUpText {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 0 0 30px rgba(233, 30, 99, 0.8), 0 0 60px rgba(233, 30, 99, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 40px rgba(233, 30, 99, 1), 0 0 80px rgba(233, 30, 99, 0.8), 0 0 120px rgba(255, 105, 180, 0.6);
+    }
+}
+
+#celebration-container p {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #d81b60;
+    margin: 20px 0;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Pulsing lights effect */
+.pulsing-light {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    animation: pulsingLight 1.5s ease-in-out infinite;
+}
+
+@keyframes pulsingLight {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+}
+
+/* Particle burst */
+.particle-burst {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: burstOut 1s ease-out forwards;
+}
+
+@keyframes burstOut {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--burst-x), var(--burst-y)) scale(0);
+    }
 }
 
 .heart-particle {
